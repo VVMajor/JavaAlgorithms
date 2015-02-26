@@ -8,7 +8,7 @@ package javaalgorithms;
 
 /**
  *
- * @author VVV
+ * @author VVMajor <http://vvmajor.github.io/>
  */
 public class JavaAlgorithms {
     
