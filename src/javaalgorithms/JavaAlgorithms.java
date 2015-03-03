@@ -39,7 +39,6 @@ public class JavaAlgorithms {
           }
         //System.out.print("seed "+Long.toString(seed)+" ");
         fillArray(arr,seed);
-        compareCount=0;
         if(arraySortedLength(arr)>maxSorted)
         {
          maxSorted=arraySortedLength(arr);
@@ -48,6 +47,12 @@ public class JavaAlgorithms {
          System.out.println("new maxSeed="+Long.toString(maxSeed)+"\n");
         
         }
+          compareCount=0;
+          quickSort(arr, 0, n-1);
+          System.out.println("seed "+Long.toString(seed)+" ");
+          System.out.println("compareCount="+Integer.toString(compareCount));
+          System.out.println("arraySortedLength="+Integer.toString(arraySortedLength(arr)));
+         
         //checkArrayPrintResult(arr);
       }
         System.out.println("maxSorted="+Integer.toString(maxSorted));
@@ -141,5 +146,39 @@ public class JavaAlgorithms {
         compareCount++;
         return a>b;
         
+    }
+    static int partition(long[] testedArray, int l, int r)
+    {
+        int m;
+         m = l;
+        
+       for(int i=l+1;i<=r;i++)
+       {
+           if(compareProcedure(testedArray[m],testedArray[i]))
+           {
+               swap(testedArray, m, i);
+               swap(testedArray, m+1, i);
+               m++;
+           }
+       }
+       return m;
+    }
+    
+    static void quickSort(long[] sortedArray,int l,int r)
+    {
+        if(l>=r)
+        {
+          return;
+        }
+        int m;
+        m=partition(sortedArray, l, r);
+        quickSort(sortedArray, l, m-1);
+        quickSort(sortedArray, m+1, r);
+    }
+    static void swap(long[] testedArray,int first,int second)
+    {
+      long temp=testedArray[first];
+      testedArray[first]=testedArray[second];
+      testedArray[second]=temp;
     }
 }
