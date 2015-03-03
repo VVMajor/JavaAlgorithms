@@ -17,7 +17,21 @@ public class JavaAlgorithms {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        FibonacciPrint();
         checkSeeds();
+        
+    }
+    
+    static void FibonacciPrint()
+    {
+      for(int i=1;i<50;i++)
+      {
+          FibonacciSequence.recursiveCount=0;
+          System.out.println("Fibonacci "+Integer.toString(i)+" = "
+                  +Long.toString(FibonacciSequence.calcNumberNaiveRecursive(i))
+                  +" recursiveCount = "
+                  +Long.toString(FibonacciSequence.recursiveCount));
+      }
     }
    
     static void checkSeeds(){
