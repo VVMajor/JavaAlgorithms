@@ -103,6 +103,8 @@ public class ArraysHandling {
         return a>b;
         
     }
+    
+    //QuickSort
     static int partition(long[] testedArray, int l, int r)
     {
         int m;
@@ -131,10 +133,73 @@ public class ArraysHandling {
         quickSort(sortedArray, l, m-1);
         quickSort(sortedArray, m+1, r);
     }
+    
     static void swap(long[] testedArray,int first,int second)
     {
       long temp=testedArray[first];
       testedArray[first]=testedArray[second];
       testedArray[second]=temp;
+    }
+    
+    //Heap//HeapSort
+    static int leftChild(int n)
+    {
+        return ((n+1)*2)-1;
+    }
+    
+    static int rightChild(int n)
+    {
+        return (n+1)*2;
+    }
+    
+    static void Heappify(long[] testedArray, int n, boolean recursive, int limit)
+    {
+        //System.out.println(""+n);   
+        if(rightChild(n)<limit 
+                && compareProcedure(testedArray[rightChild(n)],
+                        testedArray[leftChild(n)]))
+        {
+            if(compareProcedure(testedArray[rightChild(n)], testedArray[n]))
+            {
+                swap(testedArray,n,rightChild(n));
+                if(recursive)
+                {
+                    Heappify(testedArray, rightChild(n), recursive, limit);
+                }
+            }
+        }else{
+            if(leftChild(n)<limit 
+                && compareProcedure(testedArray[leftChild(n)], testedArray[n]))
+            {
+                swap(testedArray,n,leftChild(n));
+                if(recursive)
+                {
+                    Heappify(testedArray, leftChild(n), recursive, limit);
+                }
+            }
+        }
+    }
+
+    static void heapSort(long[] sortedArray)
+    {
+        int i;
+        int searched;
+        for(i=sortedArray.length/2;i>=0;i--)
+          {
+             // System.out.println("i="+i);
+            Heappify(sortedArray, i, true, sortedArray.length);  
+          }
+        
+        //System.out.println("heap built");
+        
+        //printArray(sortedArray);
+        
+        for(searched=sortedArray.length-1;searched>=0;searched--)
+        {
+          swap(sortedArray,0,searched);
+          Heappify(sortedArray, 0, true, searched);
+          
+        }
+        
     }
 }

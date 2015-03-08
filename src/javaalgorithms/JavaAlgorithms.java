@@ -24,7 +24,7 @@ public class JavaAlgorithms {
     
     static void FibonacciPrint()
     {
-      for(int i=1;i<50;i++)
+      for(int i=1;i<=42;i++)
       {
           FibonacciSequence.recursiveCount=0;
           StopWatch.start();
@@ -46,7 +46,7 @@ public class JavaAlgorithms {
     }
    
     static void checkSeeds(){
-        int n=300;
+        int n=1000000;
       long[] arr=new long[n];
       long seed;
       int maxSorted=0;
@@ -70,14 +70,29 @@ public class JavaAlgorithms {
          System.out.println("new maxSeed="+Long.toString(maxSeed)+"\n");
         
         }
+        
           ArraysHandling.compareCount=0;
           ArraysHandling.quickSort(arr, 0, n-1);
           System.out.println("seed "+Long.toString(seed)+" ");
-          System.out.println("compareCount="
+          System.out.println("QuickSort compareCount="
                   +Integer.toString(ArraysHandling.compareCount));
           System.out.println("arraySortedLength="
                   +Integer.toString(ArraysHandling.arraySortedLength(arr)));
          
+          ArraysHandling.fillArray(arr,seed);
+        ArraysHandling.compareCount=0;
+          //ArraysHandling.printArray(arr);
+          ArraysHandling.heapSort(arr);
+          
+          //System.out.println(" sorted ");
+          //ArraysHandling.printArray(arr);
+          System.out.println("seed "+Long.toString(seed)+" ");
+          System.out.println("HeapSort compareCount="
+                  +Integer.toString(ArraysHandling.compareCount));
+          System.out.println("arraySortedLength="
+                  +Integer.toString(ArraysHandling.arraySortedLength(arr)));
+         
+          
         //checkArrayPrintResult(arr);
       }
         System.out.println("maxSorted="+Integer.toString(maxSorted));
