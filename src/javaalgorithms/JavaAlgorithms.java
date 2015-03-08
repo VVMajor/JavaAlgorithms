@@ -27,10 +27,21 @@ public class JavaAlgorithms {
       for(int i=1;i<50;i++)
       {
           FibonacciSequence.recursiveCount=0;
+          StopWatch.start();
           System.out.println("Fibonacci "+Integer.toString(i)+" = "
                   +Long.toString(FibonacciSequence.calcNumberNaiveRecursive(i))
                   +" recursiveCount = "
-                  +Long.toString(FibonacciSequence.recursiveCount));
+                  +Long.toString(FibonacciSequence.recursiveCount)
+                  +" time elapsed = "
+                  +Float.toString(StopWatch.secondsElapsed())
+          );
+          StopWatch.start();
+          System.out.println("Fibonacci "+Integer.toString(i)+" = "
+                  +Long.toString(FibonacciSequence.calcNumIncrementallyLoop(i))
+                  +" time elapsed = "
+                  +Float.toString(StopWatch.secondsElapsed())
+          );
+          
       }
     }
    
