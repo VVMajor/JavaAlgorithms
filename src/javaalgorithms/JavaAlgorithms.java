@@ -46,7 +46,8 @@ public class JavaAlgorithms {
     }
    
     static void checkSeeds(){
-        int n=10000;
+        int n=6086;
+        //int n=6087; recursion failed
       long[] arr=new long[n];
       long seed;
       int maxSorted=0;
@@ -71,17 +72,27 @@ public class JavaAlgorithms {
          System.out.println("new maxSeed="+Long.toString(maxSeed)+"\n");
         
         }
-        
+          
+          ArraysHandling.fillArray(arr,seed);
           ArraysHandling.initCounts();
-          ArraysHandling.quickSort(arr, 0, n-1);
+          ArraysHandling.quickSortL(arr, 0, n-1);
           System.out.println("seed "+Long.toString(seed)+" ");
-          System.out.println("QuickSort");
+          System.out.println("QuickSortL");
+          ArraysHandling.printCounts();
+          System.out.println("arraySortedLength="
+                  +Integer.toString(ArraysHandling.arraySortedLength(arr)));
+          
+          //ArraysHandling.fillArray(arr,seed);
+          ArraysHandling.initCounts();
+          ArraysHandling.quickSortF(arr, 0, n-1);
+          System.out.println("seed "+Long.toString(seed)+" ");
+          System.out.println("QuickSortF");
           ArraysHandling.printCounts();
           System.out.println("arraySortedLength="
                   +Integer.toString(ArraysHandling.arraySortedLength(arr)));
          
           ArraysHandling.fillArray(arr,seed);
-        ArraysHandling.initCounts();
+          ArraysHandling.initCounts();
           //ArraysHandling.printArray(arr);
           ArraysHandling.heapSort(arr);
           
@@ -93,6 +104,8 @@ public class JavaAlgorithms {
           
           System.out.println("arraySortedLength="
                   +Integer.toString(ArraysHandling.arraySortedLength(arr)));
+          
+          
           ArraysHandling.fillArray(arr,seed);
      
           ArraysHandling.initCounts();

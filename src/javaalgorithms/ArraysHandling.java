@@ -15,17 +15,20 @@ public class ArraysHandling {
     
      static int compareCount;
      static int swapCount;
-    
+     static int recursionCount;
+     
     static void initCounts()
     {
         compareCount=0;
         swapCount=0;
+        recursionCount=0;
         StopWatch.start();
     }
     static void printCounts()
     {
      p(" compareCount = "+compareCount);
      p(" swapCount = "+swapCount);
+     p(" recursionCount = "+recursionCount);
      p(" time elapsed = "+Float.toString(StopWatch.secondsElapsed()));
     }
     
@@ -125,7 +128,7 @@ public class ArraysHandling {
     }
     
     //QuickSort
-    static int partition(long[] testedArray, int l, int r)
+    static int partitionFromFirst(long[] testedArray, int l, int r)
     {
         int m;
          m = l;
@@ -142,16 +145,52 @@ public class ArraysHandling {
        return m;
     }
     
-    static void quickSort(long[] sortedArray,int l,int r)
+    static int partitionFromLast(long[] testedArray, int l, int r)
     {
+        int i=l-1;
+        int j=r-1;
+       for(int k=l;k<=j;k++)
+       {
+           if(compareProcedure(testedArray[k],testedArray[r]))
+           {
+               swap(testedArray, k, j);
+               j--;
+               k--;
+                      
+           }else{
+           i++;
+           }
+       }
+               swap(testedArray, r, i+1);
+       
+       return i+1;
+    }
+    
+    
+    static void quickSortF(long[] sortedArray,int l,int r)
+    {
+        recursionCount++;
         if(l>=r)
         {
           return;
         }
         int m;
-        m=partition(sortedArray, l, r);
-        quickSort(sortedArray, l, m-1);
-        quickSort(sortedArray, m+1, r);
+        m=partitionFromFirst(sortedArray, l, r);
+        quickSortF(sortedArray, l, m-1);
+        quickSortF(sortedArray, m+1, r);
+    }
+    
+    static void quickSortL(long[] sortedArray,int l,int r)
+    {
+        recursionCount++;
+        if(l>=r)
+        {
+          return;
+        }
+        int m;
+        m=partitionFromLast(sortedArray, l, r);
+        quickSortL(sortedArray, l, m-1);
+        quickSortL(sortedArray, m+1, r);
     }
     
     static void swap(long[] testedArray,int first,int second)
@@ -259,6 +298,8 @@ public class ArraysHandling {
     
     static void mergeSort(long[] sortedArray, int start, int finish)
     {
+        recursionCount++;
+        
         int length=finish-start;
         if(length>2)
         {
